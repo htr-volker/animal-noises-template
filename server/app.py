@@ -1,9 +1,28 @@
-from flask import Flask
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import requests
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 
-# home route here
-# must query the animal API for an animal and a noise – the noise should be based on the animal
+db = SQLAlchemy(app)
+db.create_all()
+
+class Animals(db.Model):
+    id = db.Column(db.Integer, primay_key=True)
+    type = db.Column(db.String(50))
+    noise = db.Column(db.String(50))
+
+@app.route('/')
+def home():
+    animal = requests.get("http://animal_api/get_animal").text
+    noise = requests.post("http://animal_api/get_noise", data=animal).text
+    
+    animals = Animals.query.all()
+    db.session.add(Animals(type = animal, noise = noise))
+    db.session.commit()
+    
+    return render_template("index.html", animal=animal, noise=noise, animals=animals)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
