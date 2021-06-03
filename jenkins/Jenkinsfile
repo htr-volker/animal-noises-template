@@ -18,9 +18,10 @@ pipeline {
                 script{
                     if (env.install_docker == 'true'){
                         sh 'bash jenkins/setup-docker.sh'
-                        }
-                    } 
+                    }
+                } 
             }
+        }
         stage('Build'){
             steps {
                 sh 'docker-compose build --parallel' 
@@ -36,10 +37,10 @@ pipeline {
             steps{
                 sh 'docker-compose up -d'
                 script{
-                        if (env.rebuild_db == 'true'){
-                            sh 'docker exec bmi-template python create.py'
-                        }
-                    } 
+                    if (env.rebuild_db == 'true'){
+                        sh 'docker exec bmi-template python create.py'
+                    }
+                } 
             }  
         }
     }
