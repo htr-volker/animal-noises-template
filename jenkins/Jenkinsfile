@@ -37,7 +37,7 @@ pipeline {
                 sh 'docker-compose up -d'
                 script{
                     if (env.rebuild_db == 'true'){
-                        sh 'docker exec bmi-template python create.py'
+                        sh 'docker exec bmi_server python create.py'
                     }
                 } 
             }  
