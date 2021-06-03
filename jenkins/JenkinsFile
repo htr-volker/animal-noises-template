@@ -4,7 +4,8 @@ piepline {
             DATABASE_URI= credentials("DATABASE_URI")
             SECRET_KEY = credentials("SECRET_KEY")
             DOCKER_LOGIN = credentials("DOCKER_LOGIN")
-            rebuild_db = true
+            rebuild_db = 'true'
+            install_docker = 'false'
     }
     stages {
         stage('Test'){
@@ -14,7 +15,11 @@ piepline {
         }
     stages('Setup Docker'){
         steps {
-            sh 'bash jenkins/setup-docker.sh'
+            script{
+                if (env.install_docker == 'true'){
+                    sh 'bash jenkins/setup-docker.sh'
+                    }
+                } 
         }
     }
     }
@@ -35,6 +40,7 @@ piepline {
     stages {
         stage('Run'){
             steps{
+                sh 'docker rm -f bmi-template'
                 sh 'docker run -d -p 80:5000 -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY=$SECRET_KEY --name -bmi-template gokeat/bmi-template '
                 script{
                         if (env.rebuild_db == 'true'){
