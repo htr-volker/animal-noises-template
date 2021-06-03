@@ -13,35 +13,28 @@ piepline {
                 sh 'bash jenkins/test.sh'
             }  
         }
-    stages('Setup Docker'){
-        steps {
-            script{
-                if (env.install_docker == 'true'){
-                    sh 'bash jenkins/setup-docker.sh'
-                    }
-                } 
-        }
-    }
-    }
-    stages {
+        stage('Setup Docker'){
+            steps {
+                script{
+                    if (env.install_docker == 'true'){
+                        sh 'bash jenkins/setup-docker.sh'
+                        }
+                    } 
+            }
         stage('Build'){
             steps {
-                sh 'docker build -t gokeat/bmi-template:latest .' 
+                sh 'docker-compose build --parallel' 
             }  
         }
-    }
-    stages {
         stage('Push'){
             steps{
-                sh 'docker push gokeat/bmi-template:latest' 
+                sh 'docker login -u ${DOCKER_LOGIN_USR} -p ${DOCKER_LOGIN_PSW}'
+                sh 'docker-compose push' 
             } 
         }
-    }
-    stages {
         stage('Run'){
             steps{
-                sh 'docker rm -f bmi-template'
-                sh 'docker run -d -p 80:5000 -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY=$SECRET_KEY --name -bmi-template gokeat/bmi-template '
+                sh 'docker-compose up -d'
                 script{
                         if (env.rebuild_db == 'true'){
                             sh 'docker exec bmi-template python create.py'
