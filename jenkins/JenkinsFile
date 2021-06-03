@@ -3,6 +3,7 @@ piepline {
     environment {
             DATABASE_URI= credentials("DATABASE_URI")
             SECRET_KEY = credentials("SECRET_KEY")
+            DOCKER_LOGIN = credentials("DOCKER_LOGIN")
     }
     stages {
         stage('Test'){
@@ -10,6 +11,11 @@ piepline {
                 sh 'bash jenkins/test.sh'
             }  
         }
+    stages('Setup Docker'){
+        steps {
+            sh 'bash jenkins/setup-docker.sh'
+        }
+    }
     }
     stages {
         stage('Build'){
