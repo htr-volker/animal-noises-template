@@ -1,0 +1,24 @@
+<html>
+    <header>
+        <title>
+           BMI for Humans  
+        </title>
+    </header>
+    <body>
+        <h1>
+            BMI for Humans
+        </h1>
+        <p>
+            The humans height in metres is {{height}} and weight in kilograms is {{weight}} so you are {{size}}
+        </p>
+        <h2>
+            The last five Humans and their BMI
+        </h2>
+        <p>
+            {% for human in last_five_humans  %}
+            The human with height {{human.height}} and weight {{human.weight}} is {{human.size}}
+            <br>
+            {% endfor %}
+        </p>
+    </body>
+</html>

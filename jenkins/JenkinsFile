@@ -1,0 +1,39 @@
+piepline {
+    agent any
+    environment {
+            DATABASE_URI= credentials("DATABASE_URI")
+            SECRET_KEY = credentials("SECRET_KEY")
+    }
+    stages {
+        stage('Test'){
+            steps{
+                sh 'bash jenkins/test.sh'
+            }  
+        }
+    }
+    stages {
+        stage('Build'){
+            steps {
+                sh 'docker build -t gokeat/bmi-template:latest .' 
+            }  
+        }
+    }
+    stages {
+        stage('Push'){
+            steps{
+                sh 'docker push gokeat/bmi-template:latest' 
+            } 
+        }
+    }
+    stages {
+        stage('Run'){
+            steps{
+                sh 'docker run -d -p 80:5000 -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY=$SECRET_KEY --name -bmi-template gokeat/bmi-template ' 
+            }  
+        }
+    }
+    post {
+        junit '**/*.xml'
+        cobertura coberturaReportFile: 'coverage.xml', failNoReports: false
+    }
+}

@@ -1,0 +1,27 @@
+version: '3.8'
+services: 
+    server:
+        container_name: bmi_server
+        image: gokeat/bmi_server
+        build: ./server
+        ports:
+        - published: 5000
+          target: 5000 
+        environment: 
+            DATABASE_URI: ${DATABASE_URI} 
+
+    bmi_api:
+        container_name: bmi_api
+        image: gokeat/bmi_api
+        build: ./bmi_api
+  
+    height_api:
+        container_name: height_api
+        image: gokeat/height_api
+        build: ./height_api
+     
+    weight_api:
+        container_name: weight_api
+        image: gokeat/weight_api
+        build: ./weight_api
+    
