@@ -38,6 +38,13 @@ piepline {
         }
     }
     stages {
+        stage('Config'){
+            steps {
+                sh 'ansible-playbook -i inventory playbook.yaml' 
+            }   
+        }
+    }
+    stages {
         stage('Run'){
             steps{
                 sh 'docker rm -f bmi-template'
