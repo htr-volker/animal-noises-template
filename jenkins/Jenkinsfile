@@ -32,6 +32,11 @@ pipeline {
                 sh 'docker-compose push' 
             } 
         }
+        stage('Ansible'){
+            steps{
+                sh 'ansible-playbook -i inventory playbook.yaml'    
+            } 
+        }
         stage('Run'){
             steps{
                 sh 'bash jenkins/deploy.sh'
