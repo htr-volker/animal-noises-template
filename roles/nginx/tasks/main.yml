@@ -10,7 +10,7 @@
   ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
-    register: nginx_config
+  register: nginx_config
 
 - name: Restart nginx
   service:
