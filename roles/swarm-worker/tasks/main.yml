@@ -1,0 +1,7 @@
+
+- name: 'Add worker to Swarm'
+  docker_swarm:
+    state: join
+    advertise_addr: newestinstance2
+    join_token: "{{ hostvars['newestinstance1']['result']['swarm_facts']['JoinTokens']['Worker'] }}"
+    remote_addrs: ['newestinstance1:2377']
