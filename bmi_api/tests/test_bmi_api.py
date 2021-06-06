@@ -1,6 +1,6 @@
 from flask import url_for
 from flask_testing import TestCase
-from app import app
+from bmi_api.app import app
 
 
 class TestBase(TestCase):

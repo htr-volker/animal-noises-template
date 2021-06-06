@@ -1,0 +1,9 @@
+---
+- name: "Init a new swarm"
+  docker_swarm:
+    state: present
+  register: result
+
+- name: "Show info"
+  debug:
+    msg: "{{ result }}"
