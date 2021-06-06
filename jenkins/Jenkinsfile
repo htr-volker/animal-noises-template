@@ -43,6 +43,7 @@ pipeline {
 
                 script{
                         if (env.rebuild_db == 'true'){
+                            sh 'source venv/bin/activate'
                             sh 'python3 server/create.py'
                         }
                     } 
