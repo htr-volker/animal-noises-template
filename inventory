@@ -4,4 +4,5 @@ newestinstance1
 [workers]
 newestinstance2
 
-
+[loadbalancer]
+nginx

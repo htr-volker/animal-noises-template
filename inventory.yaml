@@ -1,0 +1,11 @@
+all:
+  children:
+    managers:
+      hosts:
+      - host-1: instance-1
+    workers:
+      hosts:
+      - host-2: newestinstance1
+      - host-3: newestinstance2
+  vars:
+    ansible_python_interpreter: /"usr/bin/python3"
