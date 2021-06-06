@@ -4,9 +4,9 @@
     state: present
 
 - name: "Shows swarm info"
-  docker_swarm_info:
+  docker_swarm_info: 
   register: result
 
 - name: "Show info"
   debug:
-    msg: "{{ swarm_info }}"
+    msg: "{{ result }}"

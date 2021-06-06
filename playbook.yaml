@@ -8,3 +8,8 @@
   roles:
   - swarm-manager
  
+- hosts: workers
+  become: true
+  roles:
+  - swarm-worker
+ 

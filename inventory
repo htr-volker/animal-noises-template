@@ -1,7 +1,7 @@
 [managers]
-instance-1
+newestinstance1
 
 [workers]
-newestinstance1
 newestinstance2
+
 
