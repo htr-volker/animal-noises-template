@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/get_height')
 def get_height():
-    height = random.choice([1.524,1.626,1.7272,1.8034,1.880,1.93,2.007])
+    height = random.choice([0.5, 0.55, 0.6, 0.65, 0.7])
     return jsonify({'height':height})
 
 if __name__ == "__main__":
