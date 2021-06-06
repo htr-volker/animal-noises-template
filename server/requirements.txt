@@ -4,5 +4,10 @@ flask_sqlalchemy
 pymysql
 flask_testing
 pytest
+<<<<<<< Updated upstream
 pytest-cov
 requests_mock
+=======
+requests_mock
+pytest-cov
+>>>>>>> Stashed changes
