@@ -20,6 +20,6 @@ python3 -m pytest --cov=app
 cd ..
 
 # pytest coverage animal_api_noises
-cd animal_api_noises
+cd animal_api_noise
 python3 -m pytest --cov=app
 cd ..
