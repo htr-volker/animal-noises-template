@@ -3,10 +3,6 @@ import random
 
 app = Flask(__name__)
 
-@app.route('/get_animal', methods=['GET'])
-def get_animal():
-    return random.choice(["pig", "cow", "horse"])
-
 @app.route('/get_noise', methods=['POST'])
 def get_noise():
     noises = {
