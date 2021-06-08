@@ -11,15 +11,15 @@ pip3 install -r test_requirements.txt
 
 # pytest coverage server
 cd server
-python3 -m pytest --cov=app
+python3 -m pytest --cov=app --cov-report term-missing
 cd ..
 
 # pytest coverage animal_api_type
 cd animal_api_type
-python3 -m pytest --cov=app
+python3 -m pytest --cov=app --cov-report term-missing
 cd ..
 
 # pytest coverage animal_api_noises
 cd animal_api_noise
-python3 -m pytest --cov=app
+python3 -m pytest --cov=app --cov-report term-missing
 cd ..
