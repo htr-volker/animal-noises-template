@@ -2,7 +2,7 @@ version: '3.8'
 services:
   server:
     build: ./server
-    image: htrvolker/animal_noises_server:latest
+    image: ${DOCKER_USERNAME}/animal_noises_server:latest
     container_name: animal_noises_server
     ports:
     - target: 5000
@@ -11,9 +11,9 @@ services:
       DATABASE_URI: ${DATABASE_URI}
   animal_api_type:
     build: ./animal_api_type
-    image: htrvolker/animal_noises_type:latest
+    image: ${DOCKER_USERNAME}/animal_noises_type:latest
     container_name: animal_noises_type
   animal_api_noise:
     build: ./animal_api_noise
-    image: htrvolker/animal_noises_noise:latest
+    image: ${DOCKER_USERNAME}/animal_noises_noise:latest
     container_name: animal_noises_noise
