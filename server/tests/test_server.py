@@ -22,8 +22,8 @@ class TestBase(TestCase):
 class TestHome(TestBase):
     def test_home_get(self):
         with requests_mock.Mocker() as m:
-            m.get("http://animal_api:5000/get_animal", text='pig')
-            m.post("http://animal_api:5000/get_noise", text='oink')
+            m.get("http://animal_api_type:5000/get_animal", text='pig')
+            m.post("http://animal_api_noise:5000/get_noise", text='oink')
             response = self.client.get(url_for("home"))
             self.assertEqual(response.status_code, 200)
             self.assertIn(b'The pig goes oink', response.data)
@@ -32,8 +32,8 @@ class TestHome(TestBase):
         with requests_mock.Mocker() as m:
             test_cases = [("pig", "oink"), ("horse", "neigh")]
             for case in test_cases:
-                m.get("http://animal_api:5000/get_animal", text=case[0])
-                m.post("http://animal_api:5000/get_noise", text=case[1])
+                m.get("http://animal_api_type:5000/get_animal", text=case[0])
+                m.post("http://animal_api_noise:5000/get_noise", text=case[1])
                 response = self.client.get(url_for("home"))
             self.assertIn(b'The pig goes oink', response.data)
             self.assertIn(b'The horse goes neigh', response.data)

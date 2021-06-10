@@ -1,7 +1,6 @@
-# Dockerfile for a Python App
 FROM python:latest
+COPY . /app
 WORKDIR /app
-COPY . .
 RUN pip install -r requirements.txt
 EXPOSE 5000
 ENTRYPOINT ["python", "app.py"]

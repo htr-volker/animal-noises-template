@@ -10,15 +10,7 @@ class TestBase(TestCase):
 
 test_cases = [("pig","oink"),("cow","moo"),("horse","neigh")]
 
-class TestHome(TestBase):
-    def test_get_animal(self):
-        for case in test_cases:
-            with patch('random.choice') as r:
-                r.return_value = case[0]
-                response = self.client.get(url_for("get_animal"))
-                self.assertEqual(response.status_code, 200)
-                self.assertIn(case[0], response.data.decode("utf-8"))
-    
+class TestHome(TestBase):  
     def test_get_noise(self):
         for case in test_cases:
             response = self.client.post(url_for("get_noise"), data=case[0])
