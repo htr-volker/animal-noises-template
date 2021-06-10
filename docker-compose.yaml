@@ -15,5 +15,5 @@ services:
     container_name: animal_noises_type
   animal_api_noise:
     build: ./animal_api_noise
-    image: htrovlker/animal_noises_noise:latest
+    image: htrvolker/animal_noises_noise:latest
     container_name: animal_noises_noise
