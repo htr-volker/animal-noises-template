@@ -9,11 +9,17 @@ services:
       published: 80
     environment:
       DATABASE_URI: ${DATABASE_URI}
+    deploy:
+      replicas: 4
   animal_api_type:
     build: ./animal_api_type
     image: htrvolker/animal_noises_type:latest
     container_name: animal_noises_type
+    deploy:
+      replicas: 4
   animal_api_noise:
     build: ./animal_api_noise
     image: htrvolker/animal_noises_noise:latest
     container_name: animal_noises_noise
+    deploy:
+      replicas: 4
