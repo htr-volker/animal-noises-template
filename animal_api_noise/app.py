@@ -10,7 +10,8 @@ def get_noise():
         "cow" : "moo",
         "horse" : "neigh",
         "chicken" : "cluck",
-        "sheep" : "baa"
+        "sheep" : "baa",
+        "shark" : "dun dunn"
     }
     return noises[request.data.decode('utf-8')]
 
