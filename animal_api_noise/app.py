@@ -8,7 +8,9 @@ def get_noise():
     noises = {
         "pig" : "oink",
         "cow" : "moo",
-        "horse" : "neigh"
+        "horse" : "neigh",
+        "chicken" : "cluck",
+        "sheep" : "baa"
     }
     return noises[request.data.decode('utf-8')]
 

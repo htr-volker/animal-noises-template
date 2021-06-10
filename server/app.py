@@ -18,7 +18,7 @@ def home():
     animal = requests.get("http://animal_api_type:5000/get_animal").text
     noise = requests.post("http://animal_api_noise:5000/get_noise", data=animal).text
     
-    all_animals = Animals.query.order_by(desc(Animals.id)).limit(5).all()
+    all_animals = Animals.query.order_by(desc(Animals.id)).limit(10).all()
 
     db.session.add(Animals(type = animal, noise = noise))
     db.session.commit()
