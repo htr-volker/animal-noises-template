@@ -28,8 +28,7 @@ pipeline {
             steps {
                 // install docker and docker compose
                 // docker-compose build
-                sh 'docker system prune --force'
-                sh 'docker rmi -f $(docker images -qa)'
+                sh 'docker system prune --force --all'
                 sh 'docker-compose build'
             }
         }
